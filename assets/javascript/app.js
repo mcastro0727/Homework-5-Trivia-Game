@@ -7,3 +7,17 @@
 // NEW PAGE
 // Tally Correct, Incorrect, and Uanswered Questions
 
+
+// Lots of variables
+var gameTimer = 60;
+var timeRemaining;
+
+// function play() {
+//    clearInterval(timeRemaining);
+//    timeRemaining = setInterval(countdown, 1000)
+// }
+
+function countdown() {
+    gameTimer--;
+    $("#time-remaining").html(gameTimer)
+}
