@@ -9,64 +9,64 @@
 
 // Lots of variables
 var triviaGame = {
-        timer: 10,
-        interval: null,
-        correctCount: 0,
-        incorrectCount: 0,
-        chosenAnswer: "",
-        currentIndex: 0,
-        currentQuestion: {},
+    timer: 10,
+    interval: null,
+    correctCount: 0,
+    incorrectCount: 0,
+    chosenAnswer: "",
+    currentIndex: 0,
+    currentQuestion: {},
 
-        // Question Array
-        questions: [{
-            q1: "What animal can Harry speak to?",
-            a1: ["Mouse", "Toad", "Snake", "Cat"],
-            s1: 2,
+    // Question Array
+    questions: [{
+            question: "What animal can Harry speak to?",
+            choices: ["Mouse", "Toad", "Snake", "Cat"],
+            answer: 2,
         },
         {
-            q2: "Who do people consider 'Loony'?",
-            a2: ["Hermione", "Ron", "Neville", "Luna"],
-            s2: 3,
+            question: "Who do people consider 'Loony'?",
+            choices: ["Hermione", "Ron", "Neville", "Luna"],
+            answer: 3,
         },
         {
-            q3: "How does the baslisk move from one part of the school to the other?",
-            a3: ["Shape", "Invisible", "Pipes", "Blending"],
-            s3: 2,
+            question: "How does the baslisk move from one part of the school to the other?",
+            choices: ["Shape", "Invisible", "Pipes", "Blending"],
+            answer: 2,
         },
         {
-            q4: "Who does Harry marry?",
-            a4: ["Ginny", "Luna", "Hermione", "Cho"],
-            s4: 0,
+            question: "Who does Harry marry?",
+            choices: ["Ginny", "Luna", "Hermione", "Cho"],
+            answer: 0,
         },
         {
-            q5: "Who killed Severus Snape?",
-            a5: ["Bellatrix", "Nagini", "Voldemort", "Lucius"],
-            s5: 1,
+            question: "Who killed Severus Snape?",
+            choices: ["Bellatrix", "Nagini", "Voldemort", "Lucius"],
+            answer: 1,
         },
         {
-            q6: "What is the name of Harry's godfather who escaped from Azkaban",
-            a6: ["Barty Crouch Jr", "Rodolphus Lestrange", "Igor Karkaroff", "Sirius Black"],
-            s6: 3,
+            question: "What is the name of Harry's godfather who escaped from Azkaban",
+            choices: ["Barty Crouch Jr", "Rodolphus Lestrange", "Igor Karkaroff", "Sirius Black"],
+            answer: 3,
         },
         {
-            q7: "What is Remus Lupin's boggart?",
-            a7: ["A Dementor", "A Werewolf", "Voldemort", "A Full Moon"],
-            s7: 3,
+            question: "What is Remus Lupin's boggart?",
+            choices: ["A Dementor", "A Werewolf", "Voldemort", "A Full Moon"],
+            answer: 3,
         },
         {
-            q8: "Who was Harry supposed to rescue in the Second Task of the Triwizard Tournament?",
-            a8: ["Ron Weasley", "Cho Chang", "Hermione Granger", "Ginny Weasley"],
-            s8: 3,
+            question: "Who was Harry supposed to rescue in the Second Task of the Triwizard Tournament?",
+            choices: ["Ron Weasley", "Cho Chang", "Hermione Granger", "Ginny Weasley"],
+            answer: 3,
         },
         {
-            q9: "Which of these is not one of Voldemort's horcruxes?",
-            a9: ["Hufflepuff's Cup", "Slytherin's Locket", "Elder Wand", "Tom Riddle's Diary"],
-            s9: 2,
+            question: "Which of these is not one of Voldemort's horcruxes?",
+            choices: ["Hufflepuff's Cup", "Slytherin's Locket", "Elder Wand", "Tom Riddle's Diary"],
+            answer: 2,
         },
         {
-            q10: "Who created the Philosopher's Stone?",
-            a10: ["Albus Dumbledore", "Nicolas Flamel", "Voldemort", "James Potter"],
-            s10: 1,
+            question: "Who created the Philosopher's Stone?",
+            choices: ["Albus Dumbledore", "Nicolas Flamel", "Voldemort", "James Potter"],
+            answer: 1,
         },
 
     ],
@@ -79,42 +79,42 @@ var triviaGame = {
     // $("#start").on("click", play);
 
 
-     questionRenderer: function() {
+    questionRenderer: function () {
         //set currentQuestion
         this.currentQuestion = this.questions[this.currentIndex];
-    
+
         //display question
         $("#question").text(this.currentQuestion.question);
-    
+
         //display answers
-        for (var i = 0; i < this.currentQuestion.answers.length; i++) {
-            var newAns = $("<a href='#' class='answer'>").text(this.currentQuestion.answers[i]);
-            $("#answers").append(newAns);
+        for (var i = 0; i < this.currentQuestion.choices.length; i++) {
+            var newAns = $("<a href='#' class='answer'>").text(this.currentQuestion.choices[i]);
+            $("#choices").append(newAns);
         }
-    
+
         //countdown timer
-        $("#countdown").text(trivia.timer);
+        $("#countdown").text(triviaGame.time-remaining);
         this.interval = setInterval(function () {
-            trivia.timer--;
-            $("#countdown").text(trivia.timer);
-            if (trivia.timer <= 0) {
-                trivia.play();
+            triviaGame.time-remaining--;
+            $("#countdown").text(triviaGame.time-remaining);
+            if (triviaGame.time-remaining <= 0) {
+                triviaGame.play();
             }
         }, 1000);
     },
 
-    play: function() {
+    play: function () {
         //CORRECT ANSWER LOGIC:
-        if (this.chosenAnswer == this.currentQuestion.answers[this.currentQuestion.solution]) {
+        if (this.chosenAnswer == this.currentQuestion.choices[this.currentQuestion.answer]) {
             this.correctCount++;
             this.currentIndex++;
 
-            //reset timer
+            //reset time-remaining
             clearInterval(this.interval);
             this.timer = 10;
 
             //remove answers from game area and hide it
-            $("#answers").empty();
+            $("#choices").empty();
             $("#game").attr("class", "hidden");
 
             //add text to result area and show it
@@ -125,8 +125,8 @@ var triviaGame = {
             //run this after 5 seconds
             setTimeout(function () {
                 //if at the end of questions array
-                if (trivia.currentIndex >= trivia.questions.length) {
-                    trivia.endGame();
+                if (triviaGame.currentIndex >= triviaGame.questions.length) {
+                    triviaGame.endGame();
                 }
 
                 //if not at the end
@@ -137,7 +137,7 @@ var triviaGame = {
                     $("#game").attr("class", "");
 
                     //show next question
-                    trivia.questionRenderer();
+                    triviaGame.questionRenderer();
                 }
             }, 3000);
         }
@@ -151,13 +151,13 @@ var triviaGame = {
             clearInterval(this.interval);
 
             //remove answers from game area and hide it
-            $("#answers").empty();
+            $("#choices").empty();
             $("#game").attr("class", "hidden");
 
             //if time ran out
             if (this.timer <= 0) {
                 //add text to result area and show it
-                $("#result-area").append("<h2>Time Up! The correct answer was: '" + this.currentQuestion.answers[this.currentQuestion.solution] + "'</h2>");
+                $("#result-area").append("<h2>Time Up! The correct answer was: '" + this.currentQuestion.choices[this.currentQuestion.answer] + "'</h2>");
                 $("#result-area").append("<h4>Next question in 3 seconds...</h4>");
                 $("#result-area").attr("class", "");
                 this.timer = 10;
@@ -166,7 +166,7 @@ var triviaGame = {
             //if wrong answer was chosen
             else {
                 //add text to result area and show it
-                $("#result-area").append("<h2>Incorrect! The correct answer was: '" + this.currentQuestion.answers[this.currentQuestion.solution] + "'</h2>");
+                $("#result-area").append("<h2>Incorrect! The correct answer was: '" + this.currentQuestion.choices[this.currentQuestion.answer] + "'</h2>");
                 $("#result-area").append("<h4>Next question in 3 seconds...</h4>");
                 $("#result-area").attr("class", "");
                 this.timer = 10;
@@ -175,8 +175,8 @@ var triviaGame = {
             //run this after 5 seconds
             setTimeout(function () {
                 //if at the end of questions array
-                if (trivia.currentIndex >= trivia.questions.length) {
-                    trivia.endGame();
+                if (triviaGame.currentIndex >= triviaGame.questions.length) {
+                    triviaGame.endGame();
                 }
 
                 //if not at the end
@@ -187,12 +187,52 @@ var triviaGame = {
                     $("#game").attr("class", "");
 
                     //show next question
-                    trivia.questionRenderer();
+                    triviaGame.questionRenderer();
                 }
             }, 3000);
         }
     },
 
+	//show end screen
+	endGame: function() {
+		clearInterval(this.interval);
+
+		$("#game").attr("class", "hidden");
+		$("#result-area").attr("class", "hidden");
+		$("#end-screen").attr("class", "");
+
+		$("#correct").text("Correct Answers: " +this.correctCount);
+		$("#incorrect").text("Incorrect Answers: " +this.incorrectCount);
+	},
+
+	//reset and restart game
+	resetGame: function() {
+		//empty out all changing text
+		$("#question").empty();
+		$("#choices").empty();
+		$("#result-area").empty();
+		$("#correct").empty();
+		$("#incorrect").empty();
+		$("#percent-right").empty();
+
+		//reset all variables
+		this.currentIndex = 0;
+		this.correctCount = 0;
+		this.incorrectCount = 0;
+		this.currentQuestion = {};
+		this.chosenAnswer = "";
+		this.timer = 10;
+		clearInterval(this.interval);
+		
+		//show / hide sections
+		$("#end-screen").attr("class", "hidden");
+		$("#result-area").attr("class", "hidden");
+		$("#game").attr("class", "");
+
+		//randomize question order and restart game
+		this.randomizeOrder();
+		this.showQuestion();
+	},
 
     // function countdown() {
     //     gameTimer--;
@@ -201,24 +241,20 @@ var triviaGame = {
 
     // play()
 
-
-
-
-
-
-
-
-
 };
 
 $(document).ready(function () {
-            console.log("ready!");
-            trivia.questionRenderer();
+    console.log("ready!");
+    triviaGame.questionRenderer();
 
-            //listener for clicking on an answer
-            $("body").on("click", ".answer", function() {
-                trivia.chosenAnswer = $(this).text();
-                trivia.play();
-            });
-        
-        })
+    //listener for clicking on an answer
+    $("body").on("click", ".answer", function () {
+        triviaGame.chosenAnswer = $(this).text();
+        triviaGame.play();
+    });
+
+    //listener for restart button
+    $("body").on("click", "#restart-button", function () {
+        triviaGame.resetGame();
+    });
+});
