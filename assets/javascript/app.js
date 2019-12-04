@@ -39,14 +39,6 @@ play()
 
 
 
-// Make array
-var items = [
-    {
-        question:"something somehtin soetrhintg",
-        a: [ans1, ans2, ans3],
-        correctAns: ans2
-    }
-]
 
 function questionRenderer(objPassed){
     var qDisplay = $("<p>")
@@ -78,6 +70,8 @@ function questionRenderer(objPassed){
     }
 }
 
+
+// Question Array
 var game = {
     questions: [
         {

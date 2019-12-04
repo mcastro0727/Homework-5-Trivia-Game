@@ -8,115 +8,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
     <title>Trivia Game</title>
 </head>
 
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
 
-    <h1>Harry Potter Trivia</h1>
-    <br>
+    <h1 id="title">Harry Potter Trivia</h1>
 
-    <button id="start">Start</button>
+    <div id="game">
+        <div id="time-remaining">Time Remaining: </div>
+        <div id="question"></div>
+        <div id="choices"></div>
+        <button id="sumbit">Submit</button>
+    </div>
 
-    <div id="time-remaining">Time Remaining: </div>
-
-    <br>
-    <h4>What animal can Harry speak to?</h4>
-    <input type="radio" name="answer1" value="Mouse">Mouse</input>
-    <input type="radio" name="answer1" value="Toad">Toad</input>
-    <input type="radio" name="answer1" value="Snake">Snake</input>
-    <input type="radio" name="answer1" value="Cat">Cat</input>
-
-    <br>
-    <h4>Who do people consider "Loony"?</h4>
-    <input type="radio" name="answer2" value="Hermione">Hermione Granger</input>
-    <input type="radio" name="answer2" value="Ron">Ron Weasley</input>
-    <input type="radio" name="answer2" value="Neville">Neville Longbottom</input>
-    <input type="radio" name="answer2" value="Luna">Luna Lovegood</input>
-
-    <br>
-    <h4>How does the baslisk move from one part of the school to the other?</h4>
-    <input type="radio" name="answer3" value="Shape">Shapeshifting</input>
-    <input type="radio" name="answer3" value="Invisible">Invisibility</input>
-    <input type="radio" name="answer3" value="Pipes">Pipes</input>
-    <input type="radio" name="answer3" value="Blending">Blend in with students</input>
-
-    <br>
-    <h4>Who does Harry marry?</h4>
-    <input type="radio" name="answer4" value="Ginny">Ginny Weasley</input>
-    <input type="radio" name="answer4" value="Luna">Luna Lovegood</input>
-    <input type="radio" name="answer4" value="Hermione">ermione Granger</input>
-    <input type="radio" name="answer4" value="Cho">Cho Chang</input>
-
-    <br>
-    <h4>Who killed Severus Snape?</h4>
-    <input type="radio" name="answer5" value="Bellatrix">Bellatrix Lestrange</input>
-    <input type="radio" name="answer5" value="Nagini">Nagini</input>
-    <input type="radio" name="answer5" value="Voldemort">Voldemort</input>
-    <input type="radio" name="answer5" value="Lucius">Lucius Malfoy</input>
-
-    <br>
-    <h4>What is the name of Harry's godfather who escaped from Azkaban?</h4>
-    <input type="radio" name="answer6" value="Barty Crouch Jr">Barty Crouch Jr</input>
-    <input type="radio" name="answer6" value="Rodolphus Lestrange">Rodolphus Lestrange</input>
-    <input type="radio" name="answer6" value="Igor Karkaroff">Igor Karkaroff</input>
-    <input type="radio" name="answer6" value="Sirius Black">Sirius Black</input>
-
-    <br>
-    <h4>What is Remus Lupin's boggart?</h4>
-    <input type="radio" name="answer7" value="Dementor">A Dementor</input>
-    <input type="radio" name="answer7" value="Werewolf">A Werewolf</input>
-    <input type="radio" name="answer7" value="Voldemort">Voldemort</input>
-    <input type="radio" name="answer7" value="Moon">A Full Moon</input>
-
-    <br>
-    <h4>Who was Harry supposed to rescue in the Second Task of the Triwizard Tournament</h4>
-    <input type="radio" name="answer8" value="Ron">Ron Weasley</input>
-    <input type="radio" name="answer8" value="Cho">Cho Chang</input>
-    <input type="radio" name="answer8" value="Hermione">Hermione Granger</input>
-    <input type="radio" name="answer8" value="Ginny">Ginny Weasley</input>
-
-    <br>
-    <h4>Which of these is not one of Voldemort's horcruxes?</h4>
-    <input type="radio" name="answer10" value="Cup">Hufflepuff's Cup</input>
-    <input type="radio" name="answer10" value="Locket">Slytherin's Locket</input>
-    <input type="radio" name="answer10" value="Wand">Elder Wand</input>
-    <input type="radio" name="answer10" value="Diary">Tom Riddle's Diary</input>
-
-    <br>
-    <h4>Who created the Philosopher's Stone?</h4>
-    <input type="radio" name="answer10" value="Dumbledore">Albus Dumbledore</input>
-    <input type="radio" name="answer10" value="Flamel">Nicolas Flamel</input>
-    <input type="radio" name="answer10" value="Voldemort">Voldemort</input>
-    <input type="radio" name="answer10" value="James">James Potter</input>
-
-
-
-
-
-
-
-
-
-
+    <div id="result-area" class="hidden"></div>
+        <section id="end-screen" class="hidden">
+            <h2>Game Over!</h2>
+            <h4 id="right-answers"></h4>
+            <h4 id="wrong-answers"></h4>
+            <h4 id="percent-right"></h4>
+            <button id="restart-button">Restart</button>
+        </section>
 
 </body>
 
 </html>
-
-
-
-
-<!-- 
-
-    make:
-    <div id="question"></div>
-    <div id="choices"></div>
-    <button id=btn>Whatever</button>
-
-
- -->
