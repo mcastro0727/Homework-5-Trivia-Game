@@ -56,7 +56,7 @@ var triviaGame = {
         {
             question: "Who was Harry supposed to rescue in the Second Task of the Triwizard Tournament?",
             choices: ["Ron Weasley", "Cho Chang", "Hermione Granger", "Ginny Weasley"],
-            answer: 3,
+            answer: 1,
         },
         {
             question: "Which of these is not one of Voldemort's horcruxes?",
