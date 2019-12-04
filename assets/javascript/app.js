@@ -118,8 +118,8 @@ var triviaGame = {
             $("#game").attr("class", "hidden");
 
             //add text to result area and show it
-            $("#result-area").append("<h2>Correct! You picked the right answer.</h2>");
-            $("#result-area").append("<h4>Next question in 3 seconds...</h4>");
+            $("#result-area").append("<h2>Correct! Nice job!</h2>");
+            $("#result-area").append("<h4>Next question coming up...</h4>");
             $("#result-area").attr("class", "");
 
             //run this after 5 seconds
@@ -157,8 +157,8 @@ var triviaGame = {
             //if time ran out
             if (this.timer <= 0) {
                 //add text to result area and show it
-                $("#result-area").append("<h2>Time Up! The correct answer was: '" + this.currentQuestion.choices[this.currentQuestion.answer] + "'</h2>");
-                $("#result-area").append("<h4>Next question in 3 seconds...</h4>");
+                $("#result-area").append("<h2>Out of time! The correct answer was: '" + this.currentQuestion.choices[this.currentQuestion.answer] + "'</h2>");
+                $("#result-area").append("<h4>Next question coming up...</h4>");
                 $("#result-area").attr("class", "");
                 this.timer = 10;
             }
@@ -166,8 +166,8 @@ var triviaGame = {
             //if wrong answer was chosen
             else {
                 //add text to result area and show it
-                $("#result-area").append("<h2>Incorrect! The correct answer was: '" + this.currentQuestion.choices[this.currentQuestion.answer] + "'</h2>");
-                $("#result-area").append("<h4>Next question in 3 seconds...</h4>");
+                $("#result-area").append("<h2>Womp womp! The correct answer was: '" + this.currentQuestion.choices[this.currentQuestion.answer] + "'</h2>");
+                $("#result-area").append("<h4>Next question coming up...</h4>");
                 $("#result-area").attr("class", "");
                 this.timer = 10;
             }
@@ -213,7 +213,6 @@ var triviaGame = {
 		$("#result-area").empty();
 		$("#correct").empty();
 		$("#incorrect").empty();
-		$("#percent-right").empty();
 
 		//reset all variables
 		this.currentIndex = 0;
@@ -230,8 +229,7 @@ var triviaGame = {
 		$("#game").attr("class", "");
 
 		//randomize question order and restart game
-		this.randomizeOrder();
-		this.showQuestion();
+		this.questionRenderer();
 	},
 
     // function countdown() {
