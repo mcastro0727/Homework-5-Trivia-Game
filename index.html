@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -17,24 +18,27 @@
 
 <body>
 
-    <h1 id="title">Harry Potter Trivia</h1>
+    <div class="container">
+        
+        <h1 id="title">Harry Potter Trivia</h1>
 
-    <section id="game">
-        <div id="time-remaining">Time Remaining: 
-            <span id="countdown"></span> <section> seconds left</section>
-        </div>
-        <div id="question"></div>
-        <div id="choices"></div>
-        <button id="sumbit">Submit</button>
-    </section>
+        <section id="game">
+            <div id="time-remaining">Time Remaining:
+                <span id="countdown"></span>
+                <section> seconds left</section>
+            </div>
+            <div id="question"></div>
+            <div id="choices"></div>
+        </section>
 
-    <section id="result-area" class="hidden"></section>
-    <section id="end-screen" class="hidden">
-        <h2>Game Over!</h2>
-        <h4 id="correct"></h4>
-        <h4 id="incorrect"></h4>
-        <button id="restart-button">Restart</button>
-    </section>
+        <section id="result-area" class="hidden"></section>
+        <section id="end-screen" class="hidden">
+            <h2>Game Over!</h2>
+            <h4 id="correct"></h4>
+            <h4 id="incorrect"></h4>
+            <button id="restart-button">Restart</button>
+        </section>
+    </div>
 
 </body>
 

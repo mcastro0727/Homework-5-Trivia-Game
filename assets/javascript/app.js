@@ -139,7 +139,7 @@ var triviaGame = {
                     //show next question
                     triviaGame.questionRenderer();
                 }
-            }, 3000);
+            }, 2000);
         }
 
         //WRONG ANSWER / TIMEOUT LOGIC:
@@ -189,7 +189,7 @@ var triviaGame = {
                     //show next question
                     triviaGame.questionRenderer();
                 }
-            }, 3000);
+            }, 2000);
         }
     },
 
