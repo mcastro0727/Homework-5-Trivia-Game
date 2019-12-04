@@ -93,11 +93,11 @@ var triviaGame = {
         }
 
         //countdown timer
-        $("#countdown").text(triviaGame.time-remaining);
+        $("#countdown").text(triviaGame.timer);
         this.interval = setInterval(function () {
-            triviaGame.time-remaining--;
-            $("#countdown").text(triviaGame.time-remaining);
-            if (triviaGame.time-remaining <= 0) {
+            triviaGame.timer--;
+            $("#countdown").text(triviaGame.timer);
+            if (triviaGame.timer <= 0) {
                 triviaGame.play();
             }
         }, 1000);
